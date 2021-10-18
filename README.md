@@ -2,4 +2,4 @@ This is a documentation of my beginning practice in learning Python for bioinfor
 
 I run my code on [IDLE](https://docs.python.org/2/library/idle.html), or [VS CODE](https://code.visualstudio.com/) with Code Runner Extension (compatible with multiple programming languages).
 
-Small steps count toward larger goal!
+Smaller steps count toward bigger goal!
