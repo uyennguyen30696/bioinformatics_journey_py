@@ -9,6 +9,11 @@
 # Given: Three positive integers k, m, and n, representing a population containing k+m+n organisms: k individuals are homozygous dominant for a factor, m are heterozygous, and n are homozygous recessive.
 # Return: The probability that two randomly selected mating organisms will produce an individual possessing a dominant allele (and thus displaying the dominant phenotype). Assume that any two organisms can mate.
 
+# Problem break down, see my photo note attached in this folder for more details
+# The problem actually has 2 different parts:
+# 1. Probability of 2 organisma mate 
+# 2. Probability of offspring has dominant allele (AA or Aa from Punnett square)
+
 k = 2
 m = 2
 n = 2
@@ -16,16 +21,16 @@ n = 2
 # Population = total
 pop = k + m + n
 
-# Probability of the first k mating with another k (k1 x k2)
+# Probability of the first k wil mate
 pk1 = k / pop
 
-# Probability of the first m mating with another m (m1 x m2)
+# Probability of the first m wil mate
 pm1 = m / pop
 
-# Probability of the first n mating with another n (n1 x n2)
+# Probability of the first n will mate
 pn1 = n / pop
 
-# Probability of organisms mating 
+# Probability of the second organism will mate with the first organism 
 # k x k, k x m, k x n
 kk = (k - 1) / (pop - 1)
 km = m / (pop - 1)
