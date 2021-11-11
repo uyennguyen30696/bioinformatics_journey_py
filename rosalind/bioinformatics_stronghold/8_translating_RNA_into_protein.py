@@ -4,7 +4,7 @@
 # Given: An RNA string s corresponding to a strand of mRNA (of length at most 10 kbp).
 # Return: The protein string encoded by s.
 
-rnaFile = open('txt_files/rosalind_prot.txt').read()
+rnaFile = open('txt_files/8_rosalind_prot.txt').read()
 proteinFile = open('output', 'w')
 
 rnaCodons = {

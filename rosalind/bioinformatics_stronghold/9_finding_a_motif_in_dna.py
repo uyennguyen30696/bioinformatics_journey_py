@@ -11,7 +11,7 @@ def readFile(file):
         return [line.strip() for line in f.readlines()]
 
 # Store data in the data varialbe for easy access
-data = readFile('txt_files/rosalind_subs.txt')
+data = readFile('txt_files/9_rosalind_subs.txt')
 
 dna = data[0]
 motif = data[1]

@@ -5,7 +5,7 @@
 # The output.txt file will be created after executing the code
 
 # Use for loop
-f = open('txt_files/rosalind_ini5.txt', 'r')
+f = open('txt_files/5_rosalind_ini5.txt', 'r')
 g = open('output.txt', 'w')
 
 i = 1

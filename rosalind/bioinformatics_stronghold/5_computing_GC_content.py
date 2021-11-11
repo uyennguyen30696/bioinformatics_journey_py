@@ -14,7 +14,7 @@ def readFile(fastaFile):
         return [line.strip() for line in f.readlines()]
 
 # Store FASTA formatted data in the data varialbe for easy access
-data = readFile('txt_files/rosalind_gc.txt')
+data = readFile('txt_files/5_rosalind_gc.txt')
 
 # Reformat data and store in seqDict dictionary
 # seqDict = {
