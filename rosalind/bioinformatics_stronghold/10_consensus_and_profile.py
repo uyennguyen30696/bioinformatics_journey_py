@@ -20,9 +20,12 @@
 # Given: A collection of at most 10 DNA strings of equal length (at most 1 kbp) in FASTA format.
 # Return: A consensus string and profile matrix for the collection. (If several possible consensus strings exist, then you may return any one of them.)
 
+# Note: Try to solve with smaller data set first (used the example)
+# Make sure use .strip() while printing the answer to remove any unwanted space. The format rosalind accepts has to be ridiculously exact
+
 # Convert FASTA file into an array of dna strings, no name, each line is a fragment of one string it belongs to
 f = open('txt_files/10_rosalind_cons.txt', 'r')
-g = open('output', 'w')
+g = open('output.txt', 'w')
 dna_strings = []
 fragments = []
 for line in f:
@@ -35,15 +38,16 @@ for line in f:
 if fragments:
     dna_strings.append(''.join(fragments))
 
-# Create the profile with A, C, G, T frequencies in each dna string
+# Create the profile with A, C, G, T. Count the the number of each nucleotide in each position across each dna string (NOT frequencies of them in each dna strings)
 profile = []
-for i in range(len(dna_strings)):
+# All dna string have the same length
+for i in range(len(dna_strings[0])):
     profile.append({'A': 0, 'C': 0, 'G': 0, 'T': 0})
-# Iterate through each dna string, then iterate through each nucleotide in each string
-for i in range(len(dna_strings)):
-    for j in range(len(dna_strings[i])):
-        # Count the frequency of each nucleotide in each dna string
-        profile[i][dna_strings[i][j]] += 1
+# Iterate through each sequence in all dna strings, one position at a time, and count the occurrence of each nucleotide at one position across all sequences
+# Work through each column of the matrix at a time, not row
+for seq in dna_strings:
+    for i in range(len(seq)):
+        profile[i][seq[i]] += 1
 
 concensusArr = []
 # Treat each of the profile[i] as a dictionary
@@ -71,7 +75,6 @@ for i in range(len(profile)):
     profileT_Arr.append(profile[i]['T'])
     profileT = 'T: ' + ''.join(str(profileT_Arr)).strip('[]').replace(',', '')
 
-print (profileA + '\n' + profileC + '\n' + profileG + '\n' + profileT)
+print (profileA.strip() + '\n' + profileC.strip() + '\n' + profileG.strip() + '\n' + profileT.strip())
 
-g.write(concensus)
-g.write(concensus + '\n' + profileA + '\n' + profileC + '\n' + profileG + '\n' + profileT)
+g.write(concensus + '\n' + profileA.strip() + '\n' + profileC.strip() + '\n' + profileG.strip() + '\n' + profileT.strip())
