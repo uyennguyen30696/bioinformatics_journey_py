@@ -8,12 +8,12 @@
 # Return: The total number of rabbit pairs that will be present after n months, if we begin with 1 pair and in each generation, every pair of reproduction-age rabbits produces a litter of k rabbit pairs (instead of only 1 pair).
 
 # Problem interpretation
-# Month 0: 1 pair (young)
-# Month 1: 1 pair (adult)
-# Month 2: 1 pair (adult) + k pairs (young) = 1 + k total
-# Month 3: 1 + k pairs (adult) + k pairs (young) = 1 + 2k total
-# Month 4: 1 + 2k pairs (adult) + k(1 + k) pairs (young) = 1 + k(3 + k) total
-# Month 5: 1 + k(3 + k) pairs (adult) + k(1 + 2k) pairs (young) = 1 + k(4 + 3k) total
+# Month 1: 1 pair (young)
+# Month 2: 1 pair (adult)
+# Month 3: 1 pair (adult) + k pairs (young) = 1 + k total
+# Month 4: 1 + k pairs (adult) + k pairs (young) = 1 + 2k total
+# Month 5: 1 + 2k pairs (adult) + k(1 + k) pairs (young) = 1 + k(3 + k) total
+# Month 6: 1 + k(3 + k) pairs (adult) + k(1 + 2k) pairs (young) = 1 + k(4 + 3k) total
 # ...
 
 # f(0) = 1
