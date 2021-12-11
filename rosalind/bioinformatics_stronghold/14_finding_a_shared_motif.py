@@ -4,31 +4,18 @@
 # Given: A collection of k (k≤100) DNA strings of length at most 1 kbp each in FASTA format.
 # Return: A longest common substring of the collection. (If multiple solutions exist, you may return any single solution.)
 
-# This lenghty FASTA reformat needs improvement
-# Read data from FASTA formatted file, return a list of line
-def readFile(fastaFile):
-    with open(fastaFile, 'r') as f:
-        return [line.strip() for line in f.readlines()]
+from Bio import SeqIO
 
-# Store FASTA formatted data in the data varialbe for easy access
-data = readFile('txt_files/14_rosalind_lcsm.txt')
-
-# Reformat data and store in an dictionary
-seqDict = {}
-seq_id = ''
-for str in data:
-    if str.startswith('>'):
-        seq_id = ''.join(str.split('>')) 
-        seqDict[seq_id] = ''
-    else:
-        seqDict[seq_id] += str
-
-# Store value in an array
+# Reformat FASTA file and store sequence data in an array
 seqArr = []
-for key in seqDict:
-    seqArr.append(seqDict[key])
+file = open('txt_files/14_rosalind_lcsm.txt', 'r')
+for seq_record in SeqIO.parse(file, 'fasta'):
+    seq = ''
+    for nt in seq_record:
+        seq += nt
+    seqArr.append(seq)
 
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 # Sort and get the shortest sequence
 sort_seq = sorted(seqArr, key=len)
