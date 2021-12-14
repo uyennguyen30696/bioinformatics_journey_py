@@ -6,6 +6,10 @@
 
 # Problem breakdown
 # Common substring not to be confused with common subsequence. Common substring is continuous while common subsequence is not necessary continuous, but the order of each element is maintained
+# Sort the array of all dna sequences to get the shortest string, and store the rest in the remain_strs array
+# The longest common substring can not be longer than the shortest string, that's why we only need to test the shortest string and its substrings compared to all other strings
+# To find the collection of substrings from the shortest string, we first test the substring with length l, then the 2 substrings length l - 1, and so forth
+# Since the collection of substrings we found this way ranges from longest to shorest length, the first common substring we find will automatically be the answer, the longest common substring
 
 # Reformat FASTA file and store sequence data in an array, using Biopython library
 from Bio import SeqIO 
@@ -54,5 +58,5 @@ def is_lcsm(seqArr):
         if is_common_sub(sub, remain_strs):
             return sub
     return ''
-    
+
 print (is_lcsm(seqArr))
