@@ -4,9 +4,12 @@
 # Given: A collection of k (k≤100) DNA strings of length at most 1 kbp each in FASTA format.
 # Return: A longest common substring of the collection. (If multiple solutions exist, you may return any single solution.)
 
-from Bio import SeqIO
+# Problem breakdown
+# Common substring not to be confused with common subsequence. Common substring is continuous while common subsequence is not necessary continuous, but the order of each element is maintained
 
-# Reformat FASTA file and store sequence data in an array
+# Reformat FASTA file and store sequence data in an array, using Biopython library
+from Bio import SeqIO 
+
 seqArr = []
 file = open('txt_files/14_rosalind_lcsm.txt', 'r')
 for seq_record in SeqIO.parse(file, 'fasta'):
@@ -15,27 +18,41 @@ for seq_record in SeqIO.parse(file, 'fasta'):
         seq += nt
     seqArr.append(seq)
 
-# #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-# Sort and get the shortest sequence
-sort_seq = sorted(seqArr, key=len)
-shortest_seq = sort_seq[0]
-seqs = sort_seq[1:]
-motif = ''
+# Find all substrings possible derived from the shortest string and store in an array
+# Iterate over the shortest string by increasing i on the left side and decreasing l from the right side
+def substrings(shortest_str):
+    subArr = []
+    l = len(shortest_str)
 
-# Compare each substring in the shortest seq to each of the remaining seq
-for i in range(len(shortest_seq)):
-    for j in range(i, len(shortest_seq)):
-        substring = shortest_seq[i:j+1]
-        present = True
-        for each in seqs:
-            if substring not in each:
-                present = False
-                break
-            else:
-                present = True
-        if present and len(substring) > len(motif):
-            motif = substring
-        j += 1
+    while l > 0:
+        for i in range(len(shortest_str) - l + 1):
+            sub_str = shortest_str[i:i+l]
+            subArr.append(sub_str)
+        l -= 1
 
-print (motif)
+    return subArr
+
+# Check if a substring is a common substring
+def is_common_sub(sub, remain_strs):
+    for each in remain_strs:
+        if sub not in each:
+            return False
+        return True
+
+# Find the longest common substring (lcsm)
+def is_lcsm(seqArr):
+    # Sort and get the shortest substring
+    sort_seq = sorted(seqArr, key=len)
+    shortest_str = sort_seq[0]
+    remain_strs = sort_seq[1:]
+
+    sub_strs = substrings(shortest_str)
+
+    for sub in sub_strs:
+        if is_common_sub(sub, remain_strs):
+            return sub
+    return ''
+    
+print (is_lcsm(seqArr))
