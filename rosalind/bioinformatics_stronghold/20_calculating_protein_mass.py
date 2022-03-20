@@ -22,7 +22,7 @@ massTable = { 'A': 71.03711,
               'W': 186.07931, 
               'Y': 163.06333} 
 
-dataFile = open('txt_files/20_calculating_protein_mass.txt')
+dataFile = open('txt_files/20_rosalind_prtm.txt')
 proteinStr = dataFile.read().strip()
 dataFile.close()
 

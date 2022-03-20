@@ -5,7 +5,7 @@
 from Bio import SeqIO 
 
 dnaList = []
-dataFile = open('txt_files/22_rna_splicing.txt', 'r')
+dataFile = open('txt_files/22_rosalind_splc.txt', 'r')
 for seq_record in SeqIO.parse(dataFile, 'fasta'):
     seq = ''
     for nt in seq_record:
