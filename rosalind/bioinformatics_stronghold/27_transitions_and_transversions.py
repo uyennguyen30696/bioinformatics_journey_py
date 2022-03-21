@@ -15,7 +15,7 @@
 # G <--> T
 
 # Reformat FASTA file and store sequence data in an array, using Biopython library
-from Bio import SeqIO 
+from Bio import SeqIO
 
 dnaList = []
 dataFile = open('txt_files/27_rosalind_tran.txt', 'r')
@@ -32,21 +32,39 @@ s2 = dnaList[1]
 numTransition = 0
 numTransversion = 0
 
-# s1 and s2 have the same length
-for i in range(0, len(s1)):
-    if (s1[i] == 'A' and s2[i] == 'G') or (s1[i] == 'G' and s2[i] == 'A'):
-        numTransition += 1
-    elif (s1[i] == 'C' and s2[i] == 'T') or (s1[i] == 'T' and s2[i] == 'C'):
-        numTransition += 1
-    elif (s1[i] == 'A' and s2[i] == 'C') or (s1[i] == 'C' and s2[i] == 'A'):
-        numTransversion += 1
-    elif (s1[i] == 'A' and s2[i] == 'T') or (s1[i] == 'T' and s2[i] == 'A'):
-        numTransversion += 1
-    elif (s1[i] == 'G' and s2[i] == 'C') or (s1[i] == 'C' and s2[i] == 'G'):
-        numTransversion += 1
-    elif (s1[i] == 'G' and s2[i] == 'T') or (s1[i] == 'T' and s2[i] == 'G'):
-        numTransversion += 1
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# # Intuitive approach
+# # s1 and s2 have the same length
+# for i in range(0, len(s1)):
+#     if (s1[i] == 'A' and s2[i] == 'G') or (s1[i] == 'G' and s2[i] == 'A'):
+#         numTransition += 1
+#     elif (s1[i] == 'C' and s2[i] == 'T') or (s1[i] == 'T' and s2[i] == 'C'):
+#         numTransition += 1
+#     elif (s1[i] == 'A' and s2[i] == 'C') or (s1[i] == 'C' and s2[i] == 'A'):
+#         numTransversion += 1
+#     elif (s1[i] == 'A' and s2[i] == 'T') or (s1[i] == 'T' and s2[i] == 'A'):
+#         numTransversion += 1
+#     elif (s1[i] == 'G' and s2[i] == 'C') or (s1[i] == 'C' and s2[i] == 'G'):
+#         numTransversion += 1
+#     elif (s1[i] == 'G' and s2[i] == 'T') or (s1[i] == 'T' and s2[i] == 'G'):
+#         numTransversion += 1
+
+# r = numTransition / numTransversion
+# print ('R(s1,s2) = %.11f' %r)
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# Improved approach with zip()
+transitionAG = ['A', 'G']
+transitionCT = ['C', 'T']
+
+for nt1, nt2 in zip(s1, s2):
+    if nt1 != nt2:
+        if nt1 in transitionAG and nt2 in transitionAG:
+            numTransition += 1
+        elif nt1 in transitionCT and nt2 in transitionCT:
+            numTransition += 1
+        else:
+            numTransversion += 1
 
 r = numTransition / numTransversion
-
 print ('R(s1,s2) = %.11f' %r)
