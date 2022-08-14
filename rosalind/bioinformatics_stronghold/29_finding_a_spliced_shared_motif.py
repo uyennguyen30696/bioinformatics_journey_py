@@ -15,7 +15,6 @@
 # Compare to 14_finding_a_shared_motif.py and 26_finding_a_spliced_motif
 
 # Reformat FASTA file and store sequence data in an array, using Biopython library
-import xdrlib
 from Bio import SeqIO 
 
 dnaList = []
