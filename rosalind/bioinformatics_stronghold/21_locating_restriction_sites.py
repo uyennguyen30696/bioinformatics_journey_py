@@ -5,13 +5,6 @@
 
 # Note: numpy error in python vs code environment, run `pip install --upgrade --force-reinstall numpy`
 
-# Brainstorm
-# Dynamic programming? Break down into smaller problems
-# A function to open file, reformat, and store data in a string
-# A function for reverse palindrome, reverse the DNA, then find the compliment strand of the reversed
-# A function to find the starting position (starting from 1, not 0) of the reverse palindrome, length ranging from 4 to 12
-# A function to print position and length in pairs (use dictionary)
-
 # Reformat FASTA file and store sequence data in an array, using Biopython library
 from Bio import SeqIO 
 
