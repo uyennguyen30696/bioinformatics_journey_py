@@ -11,7 +11,7 @@ reverse = dna[::-1]
 reverseList = [nuc for nuc in reverse]
 
 comp = []
-def compliment(reverseList):
+def complement(reverseList):
     for n in reverseList:
         if n == 'A':
             comp.append('T')
@@ -23,4 +23,4 @@ def compliment(reverseList):
             comp.append('G')
     return ''.join(comp)
 
-print (compliment(reverseList))
+print (complement(reverseList))
